@@ -1,0 +1,30 @@
+name: fq_mobile
+description: Find QA
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.15.1 <3.0.0"
+
+dependencies:
+  flash: ^2.0.3+2
+  retrofit: ^3.0.1
+  json_annotation: ^4.4.0
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  flutter_bloc: ^8.0.1
+  shared_preferences: ^2.0.12
+
+dev_dependencies:
+  json_serializable: ^6.1.4
+  retrofit_generator: ^4.0.1
+  build_runner: ^2.1.7
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/logo.png

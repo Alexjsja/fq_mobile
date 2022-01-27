@@ -1,9 +1,9 @@
 import 'package:fq_mobile/domain/entities/app_props.dart';
 
 abstract class AppPropsRepo{
-  bool propsSaved();
+  Future<bool> propsSaved();
 
-  AppProps loadProps();
+  Future<AppProps> loadProps();
 
-  void saveProps(AppProps appProps);
+  Future<void> saveProps(AppProps appProps);
 }

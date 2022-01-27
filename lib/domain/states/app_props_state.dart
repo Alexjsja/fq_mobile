@@ -5,7 +5,7 @@ import 'package:fq_mobile/domain/entities/app_props.dart';
 abstract class AppPropsState extends Equatable{}
 
 class InitialState extends AppPropsState{
-  final initial = AppProps(ThemeMode.light);
+  final initial = AppProps(ThemeMode.light,false,'ses');
 
   @override
   List<Object?> get props => [initial];

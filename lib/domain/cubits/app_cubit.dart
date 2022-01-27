@@ -4,15 +4,14 @@ import 'package:fq_mobile/domain/entities/app_props.dart';
 import 'package:fq_mobile/domain/states/app_props_state.dart';
 
 class AppPropsCubit extends Cubit<AppPropsState> {
-  AppPropsCubit(this.repo)
-      : super(repo.propsSaved() ? LoadedState(repo.loadProps()) : InitialState());
+  AppPropsCubit(this.repo) : super(InitialState());
 
   final AppPropsRepo repo;
 
   void getProps() async {
     emit(LoadingState());
-    if (repo.propsSaved()) {
-      emit(LoadedState(repo.loadProps()));
+    if (await repo.propsSaved()) {
+      emit(LoadedState(await repo.loadProps()));
     } else {
       emit(InitialState());
     }

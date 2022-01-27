@@ -1,21 +1,19 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:fq_mobile/data/repositories/sp_app_props_repo.dart';
+import 'package:fq_mobile/data/repositories/secure_app_props_repo.dart';
 import 'package:fq_mobile/domain/entities/app_props.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   test('App props repo save and read props', () async {
-    SharedPreferences.setMockInitialValues({});
-    var prefs = await SharedPreferences.getInstance();
-    final repo = SharedPreferencesAppPropsRepo(prefs);
+    final repo = SecureAppPropsRepo();
 
-    repo.saveProps(AppProps(ThemeMode.dark));
+    repo.saveProps(AppProps(ThemeMode.dark, false, 'ses'));
 
-    var props = repo.loadProps();
+    var props = await repo.loadProps();
 
     expect(props.themeMode, ThemeMode.dark);
+    expect(props.authorized, false);
+    expect(props.session, 'ses');
   });
 }

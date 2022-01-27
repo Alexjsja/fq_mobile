@@ -4,14 +4,18 @@ import 'package:json_annotation/json_annotation.dart';
 @JsonSerializable()
 class AppProps {
   final ThemeMode themeMode;
+  final bool authorized;
+  final String session;
 
-  AppProps(this.themeMode);
+  AppProps(this.themeMode, this.authorized, this.session);
 
   factory AppProps.fromJson(Map<String, dynamic> json) {
-    return AppProps(json['theme'] == 'dark' ? ThemeMode.dark : ThemeMode.light);
+    var theme = json['theme'] == 'dark' ? ThemeMode.dark : ThemeMode.light;
+    return AppProps(theme, json['authorized'] as bool, json['session']);
   }
 
   Map<String, dynamic> toJson() {
-    return {'theme': themeMode == ThemeMode.dark ? 'dark' : 'light'};
+    var theme = themeMode == ThemeMode.dark ? 'dark' : 'light';
+    return {'theme': theme, 'authorized': authorized, 'session': session};
   }
 }

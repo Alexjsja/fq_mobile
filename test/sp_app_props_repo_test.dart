@@ -8,7 +8,8 @@ void main() async {
   test('App props repo save and read props', () async {
     final repo = SecureAppPropsRepo();
 
-    repo.saveProps(AppProps(ThemeMode.dark, false, 'ses'));
+    repo.saveProps(
+        const AppProps(ThemeMode.dark, false, false, 'ses', Locale('ru', '')));
 
     var props = await repo.loadProps();
 

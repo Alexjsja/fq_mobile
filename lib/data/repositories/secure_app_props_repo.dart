@@ -20,7 +20,7 @@ class SecureAppPropsRepo extends AppPropsRepo {
 
   @override
   Future<void> saveProps(AppProps appProps) async {
-    storage.write(key: 'props', value: jsonEncode(appProps.toJson()));
+    await storage.write(key: 'props', value: jsonEncode(appProps.toJson()));
   }
 
   @override

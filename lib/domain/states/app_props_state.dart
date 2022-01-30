@@ -1,14 +1,14 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
+import 'package:fq_mobile/data/constants.dart';
 import 'package:fq_mobile/domain/entities/app_props.dart';
 
 abstract class AppPropsState extends Equatable{}
 
 class InitialState extends AppPropsState{
-  final initial = AppProps(ThemeMode.light,false,'ses');
+  final appProps = Constants.initialProps;
 
   @override
-  List<Object?> get props => [initial];
+  List<Object?> get props => [appProps];
 }
 
 class LoadingState extends AppPropsState{

@@ -4,56 +4,69 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fq_mobile/data/constants.dart';
 import 'package:fq_mobile/domain/cubits/app_props_cubit.dart';
 import 'package:fq_mobile/domain/states/app_props_state.dart';
-import 'package:fq_mobile/ui/widgets/atoms/left_row.dart';
 import 'package:fq_mobile/ui/widgets/atoms/switch_with_icon.dart';
+import 'package:fq_mobile/ui/widgets/molecules/log_out_button.dart';
 import 'package:fq_mobile/ui/widgets/molecules/page_body_with_header.dart';
+import 'package:fq_mobile/ui/widgets/molecules/settings_item.dart';
+import 'package:fq_mobile/ui/widgets/organisms/settings_list.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppPropsCubit, AppPropsState>(builder: (context, state) {
-      var props = (state as LoadedState).appProps;
-      return PageBodyWithHeader(
-        pageName: AppLocalizations.of(context)!.settingsBack,
-        children: [
-          LeftRow(
+    return BlocBuilder<AppPropsCubit, AppPropsState>(
+      builder: (context, state) {
+        var props = (state as LoadedState).appProps;
+        return SizedBox(
+          height: double.infinity,
+          width: double.infinity,
+          child: Stack(
             children: [
-              Text(
-                AppLocalizations.of(context)!.darkTheme,
-                style: const TextStyle(fontSize: 20),
+              PageBodyWithHeader(
+                pageName: AppLocalizations.of(context)!.settingsBack,
+                child: Column(
+                  children: [
+                    SettingsList(
+                      settings: [
+                        SettingsItem(
+                          title: AppLocalizations.of(context)!.darkTheme,
+                          setting: SwitchWithIcon(
+                            value: props.themeMode == ThemeMode.dark,
+                            icon: const Icon(Icons.wb_twighlight),
+                            onChanged: (val) {
+                              _switchTheme(context, val);
+                            },
+                          ),
+                        ),
+                        SettingsItem(
+                          title: AppLocalizations.of(context)!.language,
+                          setting: DropdownButton<String>(
+                            value: props.locale.languageCode,
+                            icon: const Icon(Icons.language),
+                            items: _languages(),
+                            onChanged: (code) {
+                              _onChanged(code, context);
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(width: 10),
-              SwitchWithIcon(
-                  value: props.themeMode == ThemeMode.dark,
-                  icon: const Icon(Icons.wb_sunny_outlined),
-                  onChanged: (val) {
-                    _switchTheme(context, val);
-                  }),
+              Positioned(
+                right: 10,
+                bottom: 10,
+                child: LogOutButton(
+                  onPressed: () => {},
+                ),
+              ),
             ],
           ),
-          const SizedBox(height: 10),
-          LeftRow(
-            children: [
-              Text(
-                AppLocalizations.of(context)!.language,
-                style: const TextStyle(fontSize: 20),
-              ),
-              const SizedBox(width: 10),
-              DropdownButton<String>(
-                value: props.locale.languageCode,
-                icon: const Icon(Icons.language),
-                items: _languages(),
-                onChanged: (code) {
-                  _onChanged(code, context);
-                },
-              ),
-            ],
-          )
-        ],
-      );
-    });
+        );
+      },
+    );
   }
 
   void _switchTheme(BuildContext context, bool themeIsDark) async {

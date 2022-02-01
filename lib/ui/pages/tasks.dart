@@ -8,8 +8,8 @@ class TasksPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageBodyWithHeader(
-        pageName: AppLocalizations.of(context)!.tasksBack,
-    children: const [],
+      pageName: AppLocalizations.of(context)!.tasksBack,
+      child: Container(),
     );
   }
 }

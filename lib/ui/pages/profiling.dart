@@ -9,7 +9,7 @@ class ProfilingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return PageBodyWithHeader(
       pageName: AppLocalizations.of(context)!.profilingBack,
-      children: const [],
+      child: Container(),
     );
   }
 }

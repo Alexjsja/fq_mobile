@@ -50,7 +50,7 @@ class _ApplicationState extends State<Application> {
               themeMode: props.themeMode,
               home: Scaffold(
                 appBar: const FqAppBar(),
-                body: Center(child: _pages.elementAt(_selectedIndex)),
+                body: _pages.elementAt(_selectedIndex),
                 bottomNavigationBar: FqNavBar(
                   onTap: _onItemTapped,
                   selectedIndex: _selectedIndex,

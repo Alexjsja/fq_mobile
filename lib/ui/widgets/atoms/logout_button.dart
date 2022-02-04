@@ -1,10 +1,10 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
-class LogOutButton extends StatelessWidget {
+class LogoutButton extends StatelessWidget {
   final VoidCallback onPressed;
 
-  const LogOutButton({Key? key, required this.onPressed}) : super(key: key);
+  const LogoutButton({Key? key, required this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

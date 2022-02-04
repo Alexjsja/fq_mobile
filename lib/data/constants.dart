@@ -7,7 +7,7 @@ abstract class Constants {
 
   static ThemeData darkTheme = ThemeData.dark();
 
-  static const AppProps initialProps = AppProps(ThemeMode.light, false, false,'',Locale('en',''));
+  static const AppProps initialProps = AppProps(ThemeMode.light, false,'',Locale('en',''));
 
   static const List<Locale> supportedLocales = [
     Locale('en', ''),

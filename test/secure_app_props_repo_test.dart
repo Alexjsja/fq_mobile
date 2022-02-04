@@ -9,7 +9,7 @@ void main() async {
     final repo = SecureAppPropsRepo();
 
     repo.saveProps(
-        const AppProps(ThemeMode.dark, false, false, 'ses', Locale('ru', '')));
+        const AppProps(ThemeMode.dark, false, 'ses', Locale('ru', '')));
 
     var props = await repo.loadProps();
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AuthPage extends StatelessWidget {
-  const AuthPage({Key? key}) : super(key: key);
+class UnlockPage extends StatelessWidget {
+  const UnlockPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

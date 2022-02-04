@@ -28,18 +28,20 @@ class AppPropsCubit extends Cubit<AppPropsState> {
     }
   }
 
-  Future<void> updateTheme(ThemeMode mode) async {
+  Future<void> switchTheme(bool darkTheme) async {
+    var mode = darkTheme ? ThemeMode.dark : ThemeMode.light;
     if (mode == _current.themeMode) return;
-    await saveProps(AppProps(mode, _current.unlocked, _current.authorized,
-        _current.session, _current.locale));
+    await saveProps(
+        AppProps(mode, _current.authorized, _current.session, _current.locale));
   }
 
-  Future<void> changeLanguage(Locale locale) async{
+  Future<void> changeLanguage(String langCode) async {
+    var locale = Locale(langCode, '');
     if (!Constants.supportedLocales.contains(locale)) {
       emit(ErrorState());
     } else {
-      await saveProps(AppProps(_current.themeMode, _current.unlocked,
-          _current.authorized, _current.session,locale));
+      await saveProps(AppProps(
+          _current.themeMode, _current.authorized, _current.session, locale));
     }
   }
 

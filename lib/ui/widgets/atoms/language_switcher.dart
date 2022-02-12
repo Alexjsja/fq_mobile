@@ -13,6 +13,7 @@ class LanguageSwitcher extends StatelessWidget {
       builder: (context, state) {
         final props = (state as LoadedState).appProps;
         return DropdownButton<String>(
+            underline: Container(),
             value: props.locale.languageCode,
             icon: const Icon(Icons.language),
             items: _languages(),

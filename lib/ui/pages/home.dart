@@ -12,8 +12,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    var l10n = AppLocalizations.of(context)!;
     return PageBodyWithHeader(
-      pageName: AppLocalizations.of(context)!.homeBack,
+      pageName: l10n.homeBack,
       child: Container(),
     );
   }

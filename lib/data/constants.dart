@@ -13,4 +13,11 @@ abstract class Constants {
     Locale('en', ''),
     Locale('ru', ''),
   ];
+
+  static const List<String> supportedCountriesNumbers = [
+    'RU',
+    'US'
+  ];
+
+  static const String passwordRegexp = r'^(?=.*[a-z])(?=.*?[0-9]).{8,}$';
 }

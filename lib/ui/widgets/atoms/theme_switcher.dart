@@ -14,7 +14,7 @@ class ThemeSwitcher extends StatelessWidget {
         var props = (state as LoadedState).appProps;
         return SwitchWithIcon(
           value: props.themeMode == ThemeMode.dark,
-          icon: const Icon(Icons.wb_twighlight),
+          icon: const Icon(Icons.brightness_2_rounded),
           onChanged: (theme) =>
               context.read<AppPropsCubit>().switchTheme(theme),
         );

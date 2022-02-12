@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fq_mobile/ui/widgets/atoms/container_border_bottom_background_color.dart';
+import 'package:fq_mobile/ui/widgets/atoms/themed_container_border_bottom.dart';
 
 class PageBodyWithHeader extends StatelessWidget {
   final Widget child;

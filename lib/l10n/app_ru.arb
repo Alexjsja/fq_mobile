@@ -6,5 +6,13 @@
   "settingsBack": "Настройки",
   "darkTheme": "Темная тема",
   "language": "Язык",
-  "logOut": "Выход"
+  "logOut": "Выход",
+  "phoneNumberHint": "Введите номер телефона",
+  "passwordHint": "Введите пароль",
+  "repeatPasswordHint": "Повторите пароль",
+  "errorPasswordMessage": "Пароль должен быть длиннее 8 символов, содержать цифры и буквы",
+  "searchCountry": "Найти страну",
+  "invalidNumber": "Не правильный номер телефона",
+  "register": "Регистрация",
+  "toLogin": "Авторизация"
 }

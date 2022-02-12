@@ -17,19 +17,20 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AppPropsCubit, AppPropsState>(
       builder: (context, state) {
+        var l10n = AppLocalizations.of(context)!;
         return StackWithLogoutButtonAbove(
           child: PageBodyWithHeader(
-            pageName: AppLocalizations.of(context)!.settingsBack,
+            pageName: l10n.settingsBack,
             child: Column(
               children: [
                 SettingsList(
                   settings: [
                     SettingsItem(
-                      title: AppLocalizations.of(context)!.darkTheme,
+                      title: l10n.darkTheme,
                       setting: const ThemeSwitcher(),
                     ),
                     SettingsItem(
-                      title: AppLocalizations.of(context)!.language,
+                      title: l10n.language,
                       setting: const LanguageSwitcher(),
                     ),
                   ],

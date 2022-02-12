@@ -15,6 +15,6 @@ void main() async {
 
     expect(props.themeMode, ThemeMode.dark);
     expect(props.authorized, false);
-    expect(props.session, 'ses');
+    expect(props.jwt, 'ses');
   });
 }

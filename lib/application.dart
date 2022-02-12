@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fq_mobile/data/constants.dart';
 import 'package:fq_mobile/data/repositories/secure_app_props_repo.dart';
 import 'package:fq_mobile/domain/cubits/app_props_cubit.dart';
-import 'package:fq_mobile/domain/entities/app_props.dart';
 import 'package:fq_mobile/domain/states/app_props_state.dart';
 import 'package:fq_mobile/ui/pages/home.dart';
 import 'package:fq_mobile/ui/pages/profiling.dart';
+import 'package:fq_mobile/ui/pages/security/register.dart';
 import 'package:fq_mobile/ui/pages/settings.dart';
 import 'package:fq_mobile/ui/pages/tasks.dart';
 import 'package:fq_mobile/ui/widgets/organisms/app_bar.dart';
@@ -29,34 +29,39 @@ class _ApplicationState extends State<Application> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AppPropsCubit>(
-        create: (BuildContext ctx) =>
-            AppPropsCubit(SecureAppPropsRepo())..getProps(),
-        child: BlocBuilder<AppPropsCubit, AppPropsState>(
-            builder: (context, state) {
+      create: (BuildContext ctx) =>
+          AppPropsCubit(SecureAppPropsRepo())..getProps(),
+      child: BlocBuilder<AppPropsCubit, AppPropsState>(
+        builder: (context, state) {
           if (state is LoadingState) return const FullscreenLoading();
-          final props = _getProps(state);
+          final props = (state as LoadedState).appProps;
           return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              localizationsDelegates: const [
-                AppLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate
-              ],
-              supportedLocales: Constants.supportedLocales,
-              locale: props.locale,
-              theme: Constants.lightTheme,
-              darkTheme: Constants.darkTheme,
-              themeMode: props.themeMode,
-              home: Scaffold(
-                appBar: const FqAppBar(),
-                body: _pages.elementAt(_selectedIndex),
-                bottomNavigationBar: FqNavBar(
-                  onTap: _onItemTapped,
-                  selectedIndex: _selectedIndex,
-                ),
-              ));
-        }));
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate
+            ],
+            supportedLocales: Constants.supportedLocales,
+            locale: props.locale,
+            theme: Constants.lightTheme,
+            darkTheme: Constants.darkTheme,
+            themeMode: props.themeMode,
+            home: props.authorized
+                ? Scaffold(
+                    appBar: const FqAppBar(),
+                    body: _pages.elementAt(_selectedIndex),
+                    bottomNavigationBar: FqNavBar(
+                      onTap: _onItemTapped,
+                      selectedIndex: _selectedIndex,
+                    ),
+                  )
+                : const RegisterPage(),
+          );
+        },
+      ),
+    );
   }
 
   List<Widget> _availablePages() {
@@ -72,12 +77,5 @@ class _ApplicationState extends State<Application> {
     setState(() {
       _selectedIndex = idx;
     });
-  }
-
-  AppProps _getProps(AppPropsState state) {
-    if (state is LoadedState) {
-      return state.appProps;
-    }
-    return InitialState().appProps;
   }
 }

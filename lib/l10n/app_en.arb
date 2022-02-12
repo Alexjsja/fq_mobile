@@ -6,5 +6,13 @@
   "settingsBack": "Settings",
   "darkTheme": "Dark theme",
   "language": "Language",
-  "logOut": "Log out"
+  "logOut": "Log out",
+  "phoneNumberHint": "Write phone number",
+  "passwordHint": "Write password",
+  "repeatPasswordHint": "Repeat password",
+  "errorPasswordMessage": "Password must be longer 8 symbols, contain numbers and letters ",
+  "searchCountry": "Search country",
+  "invalidNumber": "Invalid phone number",
+  "register": "Register",
+  "toLogin": "To login"
 }

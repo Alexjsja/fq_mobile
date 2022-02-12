@@ -15,12 +15,10 @@ class StackWithLogoutButtonAbove extends StatelessWidget {
       child: Stack(
         children: [
           child,
-          Positioned(
+          const Positioned(
             right: 10,
             bottom: 10,
-            child: LogoutButton(
-              onPressed: () => {},
-            ),
+            child: LogoutButton(),
           ),
         ],
       ),
